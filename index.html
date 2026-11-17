@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cut">
+<meta name="theme-color" content="#0b2a4a">
+<title>子宮頸癌篩檢異常處置 CDSS｜ASCCP Risk-Based Management</title>
+<style>
+:root{
+  --navy:#0b2a4a; --navy2:#123e6b; --ink:#1b2430; --muted:#5d6b7a; --line:#dfe5ec;
+  --bg:#f3f1ec; --card:#ffffff; --accent:#0f8b8d; --accent-soft:#e3f4f3;
+  --tx:#b3261e; --txc:#d9480f; --colpo:#e67700; --y1:#c99700; --y3:#2f9e44; --y5:#1971c2;
+  --special:#6741d9; --info:#5d6b7a;
+  --radius:16px; --shadow:0 6px 22px rgba(11,42,74,.08);
+  --serif:Georgia,"Times New Roman","Noto Serif TC","PMingLiU",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);
+  background-image:radial-gradient(rgba(11,42,74,.05) 1px,transparent 1px);background-size:18px 18px;
+  line-height:1.55;font-size:15px;padding-bottom:84px}
+header.top{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;
+  padding:calc(12px + env(safe-area-inset-top)) 16px 12px;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.top .row{display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:720px;margin:0 auto}
+.brand{display:flex;flex-direction:column}
+.brand b{font-family:var(--serif);font-size:19px;letter-spacing:.3px}
+.brand span{font-size:12px;opacity:.8}
+.btn-reset{border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;
+  padding:8px 14px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-reset:active{transform:scale(.96)}
+main{max-width:720px;margin:0 auto;padding:14px 12px 8px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 14px 12px;margin-bottom:12px;
+  border:1px solid rgba(11,42,74,.06);animation:rise .4s ease both}
+.card:nth-of-type(2){animation-delay:.05s}.card:nth-of-type(3){animation-delay:.1s}.card:nth-of-type(4){animation-delay:.15s}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card h2{margin:0 0 2px;font-size:15px;display:flex;align-items:center;gap:8px;color:var(--navy)}
+.step{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
+  background:var(--navy);color:#fff;font-size:12px;font-weight:700;font-family:var(--serif)}
+.hint{font-size:12.5px;color:var(--muted);margin:2px 0 10px}
+.chips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.chips.c3{grid-template-columns:repeat(3,1fr)}
+.chips.c1{grid-template-columns:1fr}
+@media(min-width:560px){.chips{grid-template-columns:repeat(4,1fr)}.chips.c1{grid-template-columns:repeat(2,1fr)}}
+.chip{border:1.5px solid var(--line);background:#fafbfc;border-radius:12px;padding:10px 8px;font-size:14px;font-weight:600;
+  color:var(--ink);cursor:pointer;text-align:center;line-height:1.25;transition:all .15s;min-height:46px;font-family:var(--sans)}
+.chip small{display:block;font-weight:400;font-size:11.5px;color:var(--muted);margin-top:2px}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:#075e60;box-shadow:inset 0 0 0 1px var(--accent)}
+.chip.on small{color:#2b7a7b}
+.chip:active{transform:scale(.97)}
+.chip[disabled]{opacity:.4;cursor:not-allowed}
+.sub{margin-top:10px;padding:10px;border-radius:12px;background:#f6f8fa;border:1px dashed #c9d3de;display:none}
+.sub.show{display:block;animation:rise .25s ease both}
+.sub .lbl{font-size:12.5px;font-weight:700;color:var(--navy2);margin-bottom:6px}
+.note{font-size:12.5px;color:#7a4a00;background:#fff6e0;border-left:3px solid #f0a500;padding:6px 9px;border-radius:6px;margin-top:8px;display:none}
+.note.show{display:block}
+/* result */
+#result{scroll-margin-top:80px}
+.res-head{border-radius:14px;padding:14px;color:#fff;margin:-2px -2px 12px;position:relative;overflow:hidden}
+.res-head:after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.12)}
+.res-head .lv{font-size:12px;letter-spacing:1px;opacity:.9;text-transform:uppercase}
+.res-head .act{font-family:var(--serif);font-size:20px;font-weight:700;margin-top:2px;line-height:1.3}
+.res-head .risk{margin-top:8px;font-size:13.5px;background:rgba(0,0,0,.16);display:inline-block;padding:4px 10px;border-radius:999px}
+.lv-tx{background:linear-gradient(135deg,#8f1d17,var(--tx))}
+.lv-txc{background:linear-gradient(135deg,#a33a0b,var(--txc))}
+.lv-colpo{background:linear-gradient(135deg,#b35c00,var(--colpo))}
+.lv-y1{background:linear-gradient(135deg,#9c7400,var(--y1))}
+.lv-y3{background:linear-gradient(135deg,#237a35,var(--y3))}
+.lv-y5{background:linear-gradient(135deg,#124f8c,var(--y5))}
+.lv-special{background:linear-gradient(135deg,#4c2fa8,var(--special))}
+.lv-info{background:linear-gradient(135deg,#46525e,var(--info))}
+.blk{margin-top:10px}
+.blk h3{font-size:13px;margin:0 0 4px;color:var(--navy);display:flex;align-items:center;gap:6px}
+.blk h3:before{content:"";width:4px;height:14px;border-radius:2px;background:var(--accent)}
+.blk p,.blk li{font-size:14px;margin:0}
+.blk ul{margin:0;padding-left:18px}
+.blk li{margin:3px 0}
+.warn li{color:#8a3b00}
+.gap{background:#f3efff;border:1px solid #d6ccff;border-radius:10px;padding:8px 10px;font-size:13px;color:#3d2a8a;margin-top:8px}
+.src{font-size:12px;color:var(--muted)}
+.ladder{display:flex;gap:3px;margin:4px 0 2px}
+.ladder div{flex:1;height:8px;border-radius:4px;background:#e7ebf0}
+.ladder div.hit{outline:2px solid var(--navy);outline-offset:1px}
+.ladder-lbl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted)}
+details{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 14px;margin-bottom:12px}
+details summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:14px}
+table.cat{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+table.cat td,table.cat th{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left;vertical-align:top}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+footer{max-width:720px;margin:0 auto;padding:6px 14px 18px;font-size:12px;color:var(--muted)}
+.disclaimer{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:#4a5562}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;gap:8px;justify-content:center}
+.dock .pill{flex:1;max-width:520px;display:flex;align-items:center;gap:10px;border:0;border-radius:14px;padding:10px 14px;color:#fff;
+  font-weight:700;font-size:14px;cursor:pointer;text-align:left;font-family:var(--sans)}
+.dock .pill span{font-weight:400;font-size:12px;opacity:.9;display:block}
+.dock .rs{border:1.5px solid var(--navy);background:#fff;color:var(--navy);border-radius:14px;padding:0 14px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="top"><div class="row">
+  <div class="brand"><b>Cervical Screening CDSS</b><span>ASCCP 2019 Risk-Based Management + Enduring Guidelines 2024–2025</span></div>
+  <button class="btn-reset" id="resetTop" aria-label="Reset">↺ Reset</button>
+</div></header>
+
+<main>
+  <section class="card">
+    <h2><span class="step">1</span>年齡分層 Age</h2>
+    <p class="hint">請選擇病人年齡區間</p>
+    <div class="chips" data-group="age">
+      <button class="chip" data-v="lt25">&lt; 25 歲</button>
+      <button class="chip" data-v="25_29">25–29 歲</button>
+      <button class="chip" data-v="30_65">30–65 歲</button>
+      <button class="chip" data-v="gt65">&gt; 65 歲</button>
+    </div>
+    <div class="note" id="noteAge"></div>
+  </section>
+
+  <section class="card">
+    <h2><span class="step">2</span>現次 HPV genotyping（可複選）</h2>
+    <p class="hint">HPV 16 / 18 / Other 可同時勾選；HPV negative 與未檢測為單選</p>
+    <div class="chips" data-group="hpv">
+      <button class="chip" data-v="h16">HPV 16<small>positive</small></button>
+      <button class="chip" data-v="h18">HPV 18<small>positive</small></button>
+      <button class="chip" data-v="oth">Other hrHPV<small>non-16/18 positive</small></button>
+      <button class="chip" data-v="neg">HPV negative<small>&nbsp;</small></button>
+      <button class="chip" data-v="nd">未檢測 HPV<small>Cytology only</small></button>
+    </div>
+    <div class="sub" id="subExt">
+      <div class="lbl">Extended genotyping（選填，Onclarity / Alinity，Massad 2025）</div>
+      <div class="chips c3" data-group="ext">
+        <button class="chip on" data-v="untyped">未細分<small>untyped / other</small></button>
+        <button class="chip" data-v="mid">45, 33/58, 31<small>52, 35/39/68, 51</small></button>
+        <button class="chip" data-v="low">56/59/66<small>only</small></button>
+      </div>
+    </div>
+    <div class="note" id="noteHpv"></div>
+  </section>
+
+  <section class="card">
+    <h2><span class="step">3</span>現次 Pap smear / Cytology</h2>
+    <p class="hint">Bethesda System 結果</p>
+    <div class="chips" data-group="cyto">
+      <button class="chip" data-v="nilm">NILM</button>
+      <button class="chip" data-v="ascus">ASC-US</button>
+      <button class="chip" data-v="lsil">LSIL</button>
+      <button class="chip" data-v="asch">ASC-H</button>
+      <button class="chip" data-v="hsil">HSIL</button>
+      <button class="chip" data-v="agc">AGC / AIS</button>
+      <button class="chip" data-v="none">尚未執行<small>no cytology</small></button>
+    </div>
+    <div class="sub" id="subAgc">
+      <div class="lbl">AGC 亞型</div>
+      <div class="chips c3" data-group="agc">
+        <button class="chip on" data-v="nos">AGC NOS<small>endocervical / glandular</small></button>
+        <button class="chip" data-v="endo">Atypical endometrial cells</button>
+        <button class="chip" data-v="neo">AGC favor neoplasia<small>或 AIS</small></button>
+      </div>
+    </div>
+    <div class="sub" id="subDs">
+      <div class="lbl">p16/Ki-67 Dual stain triage（Clarke 2024）</div>
+      <div class="chips c3" data-group="ds">
+        <button class="chip on" data-v="none">未執行</button>
+        <button class="chip" data-v="pos">Dual stain positive</button>
+        <button class="chip" data-v="neg">Dual stain negative</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="step">4</span>既往追蹤史與特殊情境</h2>
+    <p class="hint">A. 既往追蹤史（單選）</p>
+    <div class="chips c1" data-group="hist">
+      <button class="chip on" data-v="unknown">Unknown history<small>無可靠既往紀錄</small></button>
+      <button class="chip" data-v="priorNeg">既往 HPV negative<small>約 5 年內有記錄的 HPV test / Co-test negative</small></button>
+      <button class="chip" data-v="priorColpo">既往 Colposcopy &lt; CIN 2<small>1 年內，因 low-grade 結果轉介</small></button>
+      <button class="chip" data-v="persist">Persistent HPV<small>連續第 2 次 HPV positive，期間未做 Colposcopy</small></button>
+      <button class="chip" data-v="rare">Rarely screened<small>超過 5 年未篩檢</small></button>
+    </div>
+    <p class="hint" style="margin-top:12px">B. 特殊族群（可複選）</p>
+    <div class="chips" data-group="special">
+      <button class="chip" data-v="preg">懷孕中<small>Pregnant</small></button>
+      <button class="chip" data-v="immuno">免疫功能低下<small>Immunocompromised</small></button>
+    </div>
+    <div class="note" id="noteHist"></div>
+  </section>
+
+  <section class="card" id="result" aria-live="polite"></section>
+
+  <details>
+    <summary>Clinical Action Thresholds 對照表（Perkins 2020, Figure 1）</summary>
+    <table class="cat">
+      <tr><th>判斷依據</th><th>門檻</th><th>建議處置</th></tr>
+      <tr><td><span class="dot" style="background:var(--tx)"></span>Immediate CIN 3+</td><td>≥ 60%</td><td>Expedited treatment preferred（≥ 25 歲、非懷孕）</td></tr>
+      <tr><td><span class="dot" style="background:var(--txc)"></span>Immediate CIN 3+</td><td>25–59%</td><td>Expedited treatment 或 Colposcopy 皆 acceptable</td></tr>
+      <tr><td><span class="dot" style="background:var(--colpo)"></span>Immediate CIN 3+</td><td>≥ 4%</td><td>Colposcopy with Biopsy</td></tr>
+      <tr><td><span class="dot" style="background:var(--y1)"></span>5-year CIN 3+</td><td>≥ 0.55%（Immediate &lt; 4%）</td><td>1 年後 HPV-based testing</td></tr>
+      <tr><td><span class="dot" style="background:var(--y3)"></span>5-year CIN 3+</td><td>0.15% – &lt; 0.55%</td><td>3 年後 HPV-based testing</td></tr>
+      <tr><td><span class="dot" style="background:var(--y5)"></span>5-year CIN 3+</td><td>&lt; 0.15%</td><td>5 年後回到常規篩檢</td></tr>
+    </table>
+    <p class="src" style="margin-top:8px">Immediate risk 決定是否立即 Colposcopy 或治療；Immediate risk &lt; 4% 時改以 5-year risk 決定 1 / 3 / 5 年追蹤。</p>
+  </details>
+</main>
+
+<footer>
+  <div class="disclaimer">【臨床輔助警語 Disclaimer】本工具僅供醫學教育與臨床決策輔助參考，內容依據 ASCCP 2019 Risk-Based Management Consensus Guidelines（Perkins et al., JLGTD 2020）及 Enduring Guidelines（Clarke 2024；Massad 2025）整理，未涵蓋所有臨床情境；實際處置仍須依據完整 ASCCP Risk Tables，並由主治醫師綜合病人臨床狀況判斷。</div>
+  <p style="margin-top:8px">版本：v1.0（2026-11）｢ 離線單檔版 ｣ 不收集任何病人資料</p>
+</footer>
+
+<div class="dock">
+  <button class="pill lv-info" id="dockPill"><div>尚未完成選擇<span>完成步驟 1–3 後顯示建議處置</span></div></button>
+  <button class="rs" id="resetDock">Reset</button>
+</div><script>
+(function(){
+"use strict";
+var GAP='[網頁為總覽入口，深層 Risk Table 資料缺漏，請補充貼上子頁面網址或上傳 ASCCP 指引 PDF]';
+var SRC={P:'Perkins 2020（2019 ASCCP Risk-Based Management Consensus, JLGTD 24:102–131）',
+  M:'Massad 2025（Extended genotyping Enduring Guidelines, JLGTD 29:134–143）',
+  C:'Clarke 2024（p16/Ki-67 Dual stain Enduring Guidelines, JLGTD 28:124–130）'};
+var LV={tx:'Expedited treatment preferred',txc:'Treatment 或 Colposcopy',colpo:'Colposcopy 轉介',y1:'1-year Surveillance',
+  y3:'3-year Surveillance',y5:'5-year Routine screening',special:'特殊規則',info:'資料不足 / 需補檢查'};
+var FU={
+  tx:'治療後 6 個月 HPV-based testing（preferred，不論 margin 狀態）；之後每年 HPV testing / Co-testing 直到連續 3 次 negative，再每 3 年追蹤至少 25 年（Perkins J.2–J.3）。',
+  txc:'與病人 Shared decision-making 後選擇 Expedited treatment 或 Colposcopy with Biopsy；若選 Colposcopy 且結果 < CIN 2，依 Perkins I.4：HSIL → Diagnostic excision 或 1 年後 HPV-based testing + Colposcopy；ASC-H → 1 年後 HPV-based testing。',
+  colpo:'依 Biopsy 病理決定：CIN 3 → 治療（excision preferred）；CIN 2 → 治療（擔心未來妊娠者可觀察）；< CIN 2 → 依轉介原因追蹤（low-grade 轉介者 1 年後 HPV-based testing）。',
+  y1:'1 年後 HPV testing 或 Co-testing；若只能做 Cytology，改為每 6 個月一次（Perkins J.1）。',
+  y3:'3 年後 HPV testing 或 Co-testing；若只能做 Cytology，改為每年一次（Perkins J.1）。',
+  y5:'5 年後以 HPV-based testing 回到常規篩檢（Cytology alone 不適用 5 年間隔）。',
+  special:'',info:'補齊檢查結果後重新評估。'};
+var DEF={age:null,hpv:[],ext:'untyped',cyto:null,agc:'nos',ds:'none',hist:'unknown',special:[]};
+var S;
+function resetState(){S={age:null,hpv:new Set(),ext:'untyped',cyto:null,agc:'nos',ds:'none',hist:'unknown',special:new Set()};}
+resetState();
+function has(v){return S.hpv.has(v);}
+function anyPos(){return has('h16')||has('h18')||has('oth');}
+function R(level,action,risk,follow){return {level:level,action:action,risk:risk||'',follow:follow||FU[level]||'',why:[],src:[],warn:[],gap:[],label:null};}
+
+/* ---------- AGC / AIS（Perkins G.1） ---------- */
+function agcRule(){
+  var pos=anyPos(),neg=has('neg'),r;
+  var risk=pos?(S.agc==='neo'?'Immediate CIN 3+ 55%（HPV+ AGC favor neoplasia / adenocarcinoma）':'Immediate CIN 3+ 26%（HPV+ AGC，所有類別）')
+    :neg?'Immediate CIN 3+ 1.1%（HPV− AGC），仍須完整評估':'AGC 不以 HPV 結果分流';
+  if(S.agc==='endo'){
+    r=R('special','Endometrial sampling + Endocervical sampling（preferred）',risk,'若初次未做 Colposcopy 且無子宮內膜病變 → 接著安排 Colposcopy。');
+    r.label='Endometrial work-up';
+    r.why.push('Atypical endometrial cells：初次評估以 Endometrial 及 Endocervical sampling 為優先；初次同時做 Colposcopy 亦 acceptable。');
+  }else if(S.agc==='neo'){
+    r=R('txc','Colposcopy + Endocervical sampling；若未發現 invasive cancer → Diagnostic excisional procedure',risk,'Excisional 檢體需完整（intact specimen）且 margin 可判讀；切除床上方加做 Endocervical sampling（preferred）。');
+    r.label='AGC favor neoplasia / AIS → Diagnostic excision';
+    r.why.push('AGC favor neoplasia 或 AIS 常代表 invasive 或 preinvasive 病變，即使 Biopsy 未見 HSIL / AIS 仍建議 Diagnostic excision。');
+  }else{
+    r=R('colpo','Colposcopy + Endocervical sampling（不論 HPV 結果）',risk,'若未發現 CIN 2+ / AIS / cancer：1 年及 2 年做 Co-testing，兩次皆 negative 則 3 年後 Co-testing；任一異常 → Colposcopy。');
+    r.label='Colposcopy + AGC work-up';
+    r.why.push('所有 AGC 亞型（atypical endometrial cells 除外）不論 HPV 結果皆建議 Colposcopy，並於初次 Colposcopy 做 Endocervical sampling。');
+  }
+  if(S.agc!=='endo') r.why.push('≥ 35 歲，或 < 35 歲但有子宮內膜病變風險（AUB、chronic anovulation、obesity）：加做 Endometrial sampling。');
+  r.why.push('不建議以 reflex HPV testing 做 triage；只重複 Cytology unacceptable。');
+  r.src.push(SRC.P+' Section G.1、Figure 3–4');
+  r.agc=true; return r;
+}
+
+/* ---------- 免疫功能低下（Perkins K.3） ---------- */
+function immunoRule(){
+  var c=S.cyto,pos=anyPos(),nd=has('nd'),r;
+  if(c==='agc'){r=agcRule();}
+  else if(c==='lsil'||c==='asch'||c==='hsil'){
+    r=R('colpo','Colposcopy with Biopsy（不論 HPV 結果）','KPNC 無免疫功能低下族群資料，不適用一般 Risk Tables');
+    r.why.push('免疫功能低下者：LSIL 以上（含 ASC-H、AGC、AIS、HSIL）不論 HPV 結果皆轉介 Colposcopy。');
+  }else if(c==='ascus'){
+    if(pos){r=R('colpo','Colposcopy with Biopsy','不適用一般 Risk Tables');r.why.push('免疫功能低下者 HPV positive ASC-US 即轉介 Colposcopy（不分年齡）。');}
+    else if(nd){r=R('y1','6–12 個月後重複 Cytology','不適用一般 Risk Tables','重複 Cytology 為 ASC-US 以上，或 HPV positive → Colposcopy。');r.label='6–12 個月 Repeat cytology';r.why.push('ASC-US 未驗 HPV：6–12 個月重複 Cytology。');}
+    else{r=R('info','HPV negative ASC-US：原文未明列處置','—');r.gap.push('Perkins K.3 未列出免疫功能低下者 HPV negative ASC-US 的追蹤間隔（原文指向 HIV 指引）。');}
+  }else if(c==='nilm'){
+    if(pos){
+      r=R('info','HPV positive NILM：原文未明列處置','—');
+      r.gap.push('Perkins K.3 未列出免疫功能低下者 HPV positive NILM 的處置。');
+      if(has('h16')||has('h18')) r.why.push('參考：一般族群 HPV 16/18 positive NILM 建議 Colposcopy（Perkins H.2），請由主治醫師判斷是否比照。');
+    }else{
+      r=R('y3','依免疫功能低下者篩檢間隔持續篩檢','不適用一般 Risk Tables','首次篩檢後每年 1 次共 3 年，之後每 3 年 Cytology（< 30 歲）；≥ 30 歲可每 3 年 Cytology 或 Co-testing，終生持續。');
+      r.label='Immunocompromised screening';
+      r.why.push('免疫功能低下者不適用 5 年間隔；< 30 歲 HIV 患者不建議 Co-testing。');
+    }
+  }else{
+    r=R('info','請先補做 Pap smear / Cytology','—');
+    r.why.push('免疫功能低下者的處置規則以 Cytology 結果為主。');
+    if(has('h16')||has('h18')) r.why.push('一般原則：HPV 16/18 positive 若無法由同檢體 reflex Cytology，可直接 Colposcopy 並當次採集 Cytology（Perkins F.2）。');
+  }
+  r.why.unshift('免疫功能低下（HIV、器官移植、異體造血幹細胞移植、SLE、需免疫抑制治療的 IBD / 風濕疾病）：KPNC 資料無法估計風險，改用 HIV 指引規則，不分年齡。');
+  r.src.push(SRC.P+' Section K.3');
+  return r;
+}
+
+/* ---------- < 25 歲（Perkins K.1） ---------- */
+function under25(){
+  var c=S.cyto,pos=anyPos(),neg=has('neg'),r;
+  if(c==='agc'){r=agcRule();}
+  else if(c==='asch'||c==='hsil'){
+    r=R('colpo','Colposcopy with Biopsy（不可 Expedited treatment）','< 25 歲不使用 Risk Tables',
+      c==='hsil'?'Biopsy < CIN 2：觀察，1 年及 2 年做 Colposcopy + Cytology；HSIL 持續 2 年 → Diagnostic excision。CIN 2：觀察 preferred（每 6 個月 Colposcopy + Cytology）；CIN 3：治療。'
+      :'Biopsy < CIN 2：1 年及 2 年做 Cytology，ASC-US 以上 → Colposcopy；ASC-H 持續 2 年 → Diagnostic excision。CIN 2：觀察 preferred；CIN 3：治療。');
+    r.why.push('< 25 歲 ASC-H / HSIL 建議 Colposcopy；因 CIN 2+ 自然消退率高且治療有傷害，不建議未經切片確認即治療。');
+  }else if(c==='lsil'||(c==='ascus'&&!neg)){
+    r=R('y1','1 年及 2 年各重複一次 Cytology','< 25 歲不使用 Risk Tables','1 年追蹤：ASC-H、HSIL、AGC 以上 → Colposcopy；2 年追蹤：仍 ASC-US 以上 → Colposcopy；連續 2 次 negative → 回到常規篩檢。');
+    r.label='Repeat cytology（1 年、2 年）';
+    r.why.push('< 25 歲 LSIL、HPV positive ASC-US 或未驗 HPV 的 ASC-US 多為會自然消退的 non-16/18 感染，沿用 2012 演算法。');
+  }else if(c==='ascus'&&neg){
+    r=R('y3','3 年後重複 Cytology','< 25 歲不使用 Risk Tables','3 年後 Cytology。');
+    r.why.push('< 25 歲 ASC-US 若 reflex HPV negative，3 年後重複 Cytology。');
+  }else if(c==='nilm'){
+    if(pos){r=R('info','< 25 歲 HPV positive NILM：原文未涵蓋','—');r.gap.push('Perkins K.1 未涵蓋 < 25 歲 HPV positive NILM（此年齡層不建議 routine HPV testing）。');}
+    else{r=R('y3','回到常規篩檢（Cytology 每 3 年）','—','依年齡篩檢：21–24 歲 Cytology 每 3 年。');r.label='Routine screening';}
+  }else{r=R('info','< 25 歲請以 Pap smear / Cytology 結果分流','—');}
+  if(pos) r.why.push('< 25 歲處置不依 HPV genotype 分流（Perkins K.1），已忽略 genotype 資訊。');
+  if(S.hist==='priorColpo') r.why.push('既往 Colposcopy < CIN 2：1 年後重複 Cytology；ASC-US / LSIL 繼續重複 Cytology，ASC-H 以上 → Colposcopy。');
+  if(S.hist==='priorNeg'||S.hist==='persist'||S.hist==='rare') r.why.push('< 25 歲沿用 2012 演算法，「既往 HPV negative / Persistent HPV / Rarely screened」修飾因子不適用。');
+  r.src.push(SRC.P+' Section K.1、Figure 12–13');
+  return r;
+}
+
+/* ---------- ≥ 25 歲 Risk-based ---------- */
+function persistColpo(){
+  var r=R('colpo','Colposcopy with Biopsy','Immediate CIN 3+ 略高於 4%（連續 2 次 HPV+）');
+  r.why.push('連續第 2 次 HPV positive（期間未做 Colposcopy）代表持續感染，達 Colposcopy 門檻（Perkins E.2；Massad 2025 Table 6–7）。');
+  return r;
+}
+function otherRule(c,h,ext){
+  var extLbl={untyped:'未細分 Other hrHPV（untyped / other）',mid:'HPV 45, 33/58, 31, 52, 35/39/68, 51',low:'只檢出 HPV 56/59/66'}[ext];
+  var r;
+  if(c==='hsil'){
+    if(ext==='low'){r=R('colpo','Colposcopy with Biopsy','單項數值原文未列');r.why.push('Massad 2025 Table 6：HPV 56/59/66 合併 ASC-H、AGC 或 HSIL → Colposcopy。');}
+    else{
+      r=R('txc','Expedited treatment 或 Colposcopy with Biopsy（Shared decision-making）','Immediate CIN 3+ 49%（HPV+ HSIL 全體；CIN 2+ 77%）');
+      r.why.push('2019 KPNC：HPV positive HSIL 位於 25–59% 處置帶，Expedited treatment 與 Colposcopy 皆 acceptable。','Massad 2025 Table 6 對 non-16/18 HSIL 列為 Colposcopy（註腳 9 內容未取得）。');
+      r.gap.push('49% 為 HPV positive（含 16/18）全體數值；16/18 negative 的單項數值與 Massad 2025 Table 6 註腳 9 全文未取得。');
+    }
+  }else if(c==='asch'){
+    r=R('colpo','Colposcopy with Biopsy',ext==='low'?'單項數值原文未列':'2019 KPNC：HPV+ ASC-H 26%（含 16/18 全體；cancer 0.92%）');
+    r.why.push('ASC-H 不論 HPV 結果皆建議 Colposcopy（Perkins H.2）。');
+    if(ext!=='low') r.why.push('2019：未分型 HPV+ ASC-H 26% 達 25% 門檻，Expedited treatment 亦 acceptable；2025 Extended genotyping 對 non-16/18 ASC-H 建議 Colposcopy。');
+  }else if(c==='ascus'||c==='lsil'){
+    if(ext==='low'){
+      if(h==='persist') r=persistColpo();
+      else{r=R('y1','1 年後重驗 HPV','Immediate CIN 3+ < 4%（單項數值原文未列）','1 年後 HPV test；若仍 HPV positive（連續第 2 次）→ Colposcopy。');r.why.push('Massad 2025：只檢出 HPV 56/59/66 的 NILM / ASC-US / LSIL → 1 年後重驗 HPV。');}
+    }else if(ext==='mid'){
+      r=R('colpo','Colposcopy with Biopsy','Immediate CIN 3+ ≥ 4%');
+      r.why.push('Massad 2025：HPV 45, 33/58, 31, 52, 35/39/68, 51 合併 ASC-US 或 LSIL → Colposcopy，不因既往 HPV negative 降階。');
+    }else{
+      if(h==='priorNeg'){
+        r=R('y1','1 年後 HPV-based testing','Immediate CIN 3+ 約 2%（既往 HPV negative 後新發 low-grade）');
+        r.why.push('5 年內有記錄的 HPV / Co-test negative，可使新 low-grade 結果的 CIN 3+ 風險降低約 50%，因此改為 1 年 Surveillance。','既往只有 Cytology negative 不算，不能據以降階。');
+      }else if(h==='priorColpo'){
+        r=R('y1','1 年後 HPV-based testing','Immediate CIN 3+ 3.1%（Colposcopy < CIN 2 後再次 HPV+ ASC-US）');
+        r.why.push('1 年內依標準完成 Colposcopy 且 < CIN 2，可降低接下來 2 年的風險，因此 1 年後再追蹤即可。');
+      }else if(h==='persist'){r=persistColpo();}
+      else{
+        r=R('colpo','Colposcopy with Biopsy',c==='ascus'?'Immediate CIN 3+ 4.2%（HPV+ ASC-US，unknown history）':'Immediate CIN 3+ 略高於 4%（HPV+ LSIL，unknown history）');
+        r.why.push('HPV positive ASC-US 與 LSIL 風險相近，依 equal management for equal risk 原則同樣處置。');
+      }
+    }
+  }else if(c==='nilm'){
+    if(h==='persist') r=persistColpo();
+    else{
+      r=R('y1','1 年後 HPV-based testing','Immediate CIN 3+ 2.1%（HPV+ NILM，unknown history）','1 年後若仍 HPV positive（連續第 2 次）→ Colposcopy；若 HPV negative → 3 年後追蹤。');
+      r.why.push('HPV positive NILM 的 Immediate risk 未達 4%，5-year risk 高於 0.55%，因此 1 年 Surveillance。');
+      if(h==='rare') r.gap.push('Rarely screened 情境下 HPV+ NILM 的單項風險。');
+    }
+  }else{
+    if(ext==='low'){
+      if(h==='persist') r=persistColpo();
+      else{r=R('y1','1 年後重驗 HPV','Immediate CIN 3+ < 4%');r.why.push('Massad 2025：Primary HPV screening 只檢出 HPV 56/59/66 → 1 年後重驗 HPV。');}
+    }else if(S.ds==='pos'){
+      r=R('colpo','Colposcopy with Biopsy','HPV+ / Dual stain positive');
+      r.why.push('Clarke 2024 / Massad 2025 Table 7：non-16/18 HPV positive 且 Dual stain positive → Colposcopy。');
+    }else if(S.ds==='neg'){
+      if(h==='persist') r=persistColpo();
+      else{r=R('y1','1 年後重驗 HPV','HPV+ / Dual stain negative（Immediate < 4%）');r.why.push('Clarke 2024 / Massad 2025 Table 7：Dual stain negative → 1 年後重驗 HPV。');}
+    }else{
+      r=R('info','請先完成 reflex Cytology 或 p16/Ki-67 Dual stain triage','—');
+      r.why.push('Primary HPV positive（non-16/18）需以同一檢體做 reflex triage（Cytology preferred），結果出來後再分流。');
+    }
+  }
+  r.why.push('型別分組：'+extLbl+'。');
+  r.src.push(SRC.P+' E.1–E.3、F.2、H.2',SRC.M+' Table 6–7');
+  if(c==='none') r.src.push(SRC.C);
+  return r;
+}
+function riskBased(){
+  var c=S.cyto,h=S.hist,ext=S.ext,r;
+  var g=has('h16')?'16':has('h18')?'18':has('oth')?'oth':has('neg')?'neg':'nd';
+  if(c==='agc') return agcRule();
+  if(g==='16'){
+    if(c==='hsil'){r=R('tx','Expedited treatment（excisional，如 LEEP）preferred；Colposcopy with Biopsy acceptable','Immediate CIN 3+ 60%（CIN 2+ 77%，cancer 8.1%）');
+      r.why.push('HPV 16 positive HSIL 為 Expedited treatment preferred 門檻（≥ 60%）的代表情境。','治療前應 Shared decision-making，尤其擔心未來妊娠結果者。');}
+    else if(c==='asch'){r=R('txc','Expedited treatment 或 Colposcopy with Biopsy','位於 25–59% 處置帶（單項數值原文未列）');
+      r.why.push('Massad 2025 Table 6：HPV 16 + ASC-H → Treatment or colposcopy。');r.gap.push('HPV 16 positive ASC-H 的單項 Immediate CIN 3+ 數值。');}
+    else if(c==='nilm'){r=R('colpo','Colposcopy with Biopsy','Immediate CIN 3+ 8.4%（HPV 16+ NILM）');}
+    else if(c==='ascus'||c==='lsil'){r=R('colpo','Colposcopy with Biopsy','Immediate CIN 3+ 20.5%（HPV 16+ ASC-US 以上合併）');}
+    else{r=R('colpo','直接 Colposcopy，當次採集 Cytology','—');
+      r.why.push('Primary HPV 16 positive 若無法由同檢體 reflex Cytology，可直接 Colposcopy；當次加採 Cytology 以判斷是否符合 Expedited treatment（例如 HPV 16+ HSIL）。');}
+    if(c!=='hsil'&&c!=='asch') r.why.push('HPV 16/18 感染具最高 CIN 3 與 occult cancer 風險，即使 Cytology negative 仍須 Colposcopy。');
+    if(has('h18')||has('oth')) r.why.push('同時有其他型別 positive：以風險最高的 HPV 16 規則判斷。');
+    r.why.push('HPV 16/18 不因既往 HPV negative 或既往 Colposcopy 而降階（Massad 2025：past history N/A）。');
+    r.src.push(SRC.P+' Box 1、E.3、F.2',SRC.M+' Table 6');
+  }else if(g==='18'){
+    if(c==='hsil'){r=R('txc','Expedited treatment 或 Colposcopy with Biopsy','位於 25–59% 處置帶（單項數值原文未列）');
+      r.why.push('Massad 2025 Table 6：HPV 18 + HSIL → Treatment or colposcopy。');r.gap.push('HPV 18 positive HSIL 的單項 Immediate CIN 3+ 數值。');}
+    else if(c==='nilm'){r=R('colpo','Colposcopy with Biopsy','Immediate CIN 3+ 3.0%（KPNC 2019）/ 4.0%（Onclarity 2025）');
+      r.why.push('CIN 3+ 風險接近或低於 4%，但 HPV 18+ NILM 的癌症風險不成比例地高（immediate 0.2%、5 年 0.56%），HPV 18 相關 CIN 3 / AIS 較難診斷，屬 Colposcopy 門檻例外（Perkins H.2）。');}
+    else if(c==='ascus'||c==='lsil'||c==='asch'){r=R('colpo','Colposcopy with Biopsy','Immediate CIN 3+ 10.4%（HPV 18+ ASC-US 以上合併）');
+      if(c==='asch') r.why.push('ASC-H 不論 HPV 結果皆建議 Colposcopy。');}
+    else{r=R('colpo','直接 Colposcopy，當次採集 Cytology','—');r.why.push('Primary HPV 18 positive 若無法 reflex Cytology，可直接 Colposcopy 並當次加採 Cytology。');}
+    if(has('oth')) r.why.push('同時 Other hrHPV positive：以風險較高的 HPV 18 規則判斷。');
+    r.why.push('HPV 16/18 不因既往 HPV negative 或既往 Colposcopy 而降階（Massad 2025：past history N/A）。');
+    r.src.push(SRC.P+' E.3、F.2、H.2',SRC.M+' Table 6');
+  }else if(g==='oth'){r=otherRule(c,h,ext);}
+  else if(g==='neg'){
+    if(c==='nilm'||c==='none'){r=R('y5','5 年後回到常規篩檢',c==='none'?'5-year CIN 3+ 0.14%（Primary HPV negative）':'5-year CIN 3+ 0.12%（Co-test negative）/ 0.14%（Primary HPV negative）');}
+    else if(c==='ascus'){r=R('y3','3 年後 HPV-based testing','5-year CIN 3+ 0.40%（HPV− ASC-US，unknown history）');}
+    else if(c==='lsil'){r=R('y1','1 年後 HPV-based testing','Immediate CIN 3+ 1.1%（HPV− LSIL）');}
+    else if(c==='asch'){r=R('colpo','Colposcopy with Biopsy','Immediate CIN 3+ 3.4%（cancer risk 0.69%）');
+      r.why.push('HPV− ASC-H 的 CIN 3+ 風險低於 4%，但癌症風險與 HPV+ ASC-H 相近，屬 Colposcopy 門檻例外：ASC-H 不論 HPV 結果皆轉介（Perkins H.2）。');}
+    else{r=R('txc','Expedited treatment 或 Colposcopy with Biopsy','Immediate CIN 3+ 25%（CIN 2+ 47%）');}
+    if(h==='persist') r.warn.push('已勾選 Persistent HPV，但現次 HPV negative，請確認既往史。');
+    if(h!=='unknown'&&(c==='ascus'||c==='lsil')) r.why.push('風險數值為 unknown history 估計值；有既往史時請查 Risk Tables 確認。');
+    r.src.push(SRC.P+' E.1–E.3、H.2');
+  }else{
+    if(c==='nilm'){r=R('y3','3 年後重複篩檢（Cytology alone）','5-year CIN 3+ 0.33–0.52%（Cytology negative）');
+      r.why.push('Cytology alone 永遠不適用 5 年間隔；≥ 25 歲建議改用 HPV-based testing。');}
+    else if(c==='asch'){r=R('colpo','Colposcopy with Biopsy','HPV+ ASC-H 26% / HPV− ASC-H 3.4%');r.why.push('ASC-H 不論 HPV 結果皆建議 Colposcopy（Perkins H.2）。');}
+    else if(c==='hsil'){r=R('txc','Expedited treatment 或 Colposcopy with Biopsy','HPV− HSIL 25% / HPV+ HSIL 49%（不論 HPV 皆 ≥ 25%）');
+      r.why.push('HSIL 不論 HPV 結果，Immediate CIN 3+ 皆達 25% 門檻。');
+      if(h==='rare') r.why.push('Rarely screened 且 HPV positive 時風險達 64%（Expedited treatment preferred），建議補驗 HPV。');}
+    else if(c==='ascus'||c==='lsil'){r=R('info','建議補做 reflex HPV testing 後重新分流','—');
+      r.why.push('2019 指引以 HPV-based testing 作為風險評估基礎：HPV+ ASC-US / LSIL（unknown history）→ Colposcopy；HPV− ASC-US → 3 年；HPV− LSIL → 1 年。');
+      r.gap.push('Cytology-only（未驗 HPV）'+(c==='lsil'?'LSIL':'ASC-US')+' 的完整 Risk Table 處置。');}
+    else{r=R('info','請至少完成 HPV testing 或 Cytology','—');}
+    r.src.push(SRC.P+' E.1–E.3、H.2');
+  }
+  if(h==='rare'&&anyPos()&&c==='hsil'){
+    if(r.level!=='tx'){r.level='tx';r.label=null;r.action='Expedited treatment（excisional，如 LEEP）preferred；Colposcopy with Biopsy acceptable';
+      r.risk='Immediate CIN 3+ 64%（Rarely screened HPV+ HSIL；CIN 2+ 82%）';r.follow=FU.tx;}
+    r.why.unshift('Rarely screened（> 5 年未篩檢）且 HPV positive HSIL，不論 genotype，Immediate CIN 3+ 64%，達 Expedited treatment preferred 門檻（Perkins Box 1、E.3）。');
+  }else if(h==='rare'&&anyPos()){
+    r.warn.push('Rarely screened（> 5 年未篩檢）風險較高，不可因既往史降階。');
+  }
+  return r;
+}
+
+/* ---------- 懷孕（Perkins K.2） ---------- */
+function pregnancy(r){
+  if(r.agc){
+    r.level='colpo';r.label='Colposcopy（孕期 AGC）';
+    r.action='Colposcopy with Biopsy（孕期 Endocervical sampling 與 Endometrial sampling unacceptable）';
+    if(S.agc==='neo') r.action+='；Diagnostic excision 僅在懷疑 invasive cancer 時進行';
+    if(S.agc==='endo') r.gap.push('孕期 atypical endometrial cells 的 Endometrial 評估時機。');
+  }else if(r.level==='tx'||r.level==='txc'){
+    r.level='colpo';r.label=null;r.action='Colposcopy with Biopsy（孕期 Expedited treatment unacceptable）';
+    r.why.push('原本達 Treatment 門檻，懷孕中改為 Colposcopy with Biopsy。');
+  }
+  if(r.level==='colpo') r.follow='確診 CIN 2/3：每 12–24 週 Colposcopy + Cytology / HPV 追蹤（preferred），或延至產後再評估（acceptable）；孕期不建議治療 CIN 2/3。產後 Colposcopy 至少在產後 4 週後。';
+  r.warn.push('孕期 Surveillance 與 Colposcopy 門檻同非懷孕者；ECC、Endometrial biopsy、未經 Biopsy 的治療皆 unacceptable。',
+    '只有在 Cytology、Colposcopy 或病理懷疑癌症時，才做 Diagnostic excision 或重複 Biopsy。',
+    '確診 AIS 優先轉介婦癌科；建議由有孕期 Colposcopy 經驗的醫師執行。');
+  r.src.push(SRC.P+' Section K.2');
+}
+
+function evaluate(){
+  if(!S.age||S.hpv.size===0||!S.cyto){
+    var miss=[];if(!S.age)miss.push('年齡');if(!S.hpv.size)miss.push('HPV 結果');if(!S.cyto)miss.push('Cytology');
+    return {pending:true,miss:miss};
+  }
+  var imm=S.special.has('immuno'),preg=S.special.has('preg');
+  var r=imm?immunoRule():(S.age==='lt25'?under25():riskBased());
+  if(preg) pregnancy(r);
+  if(S.age==='gt65'){
+    r.warn.push('> 65 歲：若仍有檢查，異常結果依 25–65 歲規則處置；正在 Surveillance 者健康狀況許可時不可中止，預期壽命有限者建議中止（K.5）。');
+    if(has('neg')&&S.cyto==='nilm') r.warn.push('若符合 adequate prior screening 且 25 年內無 CIN 2+，可依篩檢指引停止篩檢。');
+  }
+  if(S.age!=='lt25') r.warn.push('曾接受 CIN 2+ / AIS 治療者，不適用本表初篩邏輯：治療後每 3 年追蹤至少 25 年（J.3）。');
+  return r;
+}
+
+var LADDER=['y5','y3','y1','colpo','txc','tx'];
+var LCOL={y5:'var(--y5)',y3:'var(--y3)',y1:'var(--y1)',colpo:'var(--colpo)',txc:'var(--txc)',tx:'var(--tx)'};
+function li(a){return a.map(function(x){return '<li>'+x+'</li>';}).join('');}
+function uniq(a){return a.filter(function(x,i){return a.indexOf(x)===i;});}
+
+function renderResult(){
+  var r=evaluate(),box=document.getElementById('result'),pill=document.getElementById('dockPill');
+  if(r.pending){
+    box.innerHTML='<div class="res-head lv-info"><div class="lv">Result</div><div class="act">請完成：'+r.miss.join('、')+'</div><div class="risk">Immediate CIN 3+ Risk 將在此顯示</div></div><p class="hint">選擇年齡、HPV genotyping 與 Cytology 後，系統會依 ASCCP Clinical Action Thresholds 即時顯示建議處置。</p>';
+    pill.className='pill lv-info';pill.innerHTML='<div>尚未完成選擇<span>還缺：'+r.miss.join('、')+'</span></div>';return;
+  }
+  var label=r.label||LV[r.level];
+  var lad=LADDER.map(function(k){return '<div style="background:'+LCOL[k]+';opacity:'+(k===r.level?1:.25)+'" class="'+(k===r.level?'hit':'')+'"></div>';}).join('');
+  var h='<div class="res-head lv-'+r.level+'"><div class="lv">風險等級｜'+label+'</div><div class="act">'+r.action+'</div>'+(r.risk?'<div class="risk">'+r.risk+'</div>':'')+'</div>';
+  h+='<div class="ladder">'+lad+'</div><div class="ladder-lbl"><span>5 年</span><span>3 年</span><span>1 年</span><span>Colpo</span><span>Tx/Colpo</span><span>Tx</span></div>';
+  if(r.follow) h+='<div class="blk"><h3>建議追蹤時程</h3><p>'+r.follow+'</p></div>';
+  if(r.why.length) h+='<div class="blk"><h3>臨床處置理由說明</h3><ul>'+li(uniq(r.why))+'</ul></div>';
+  if(r.warn.length) h+='<div class="blk warn"><h3>注意事項</h3><ul>'+li(uniq(r.warn))+'</ul></div>';
+  if(r.gap.length) h+='<div class="gap"><b>資料缺漏：</b><ul style="margin:4px 0 4px;padding-left:18px">'+li(uniq(r.gap))+'</ul>'+GAP+'</div>';
+  h+='<div class="blk"><h3>依據文獻</h3><p class="src">'+uniq(r.src).join('<br>')+'</p></div>';
+  box.innerHTML=h;
+  pill.className='pill lv-'+r.level;
+  pill.innerHTML='<div>'+label+'<span>'+r.action.slice(0,38)+(r.action.length>38?'…':'')+'</span></div>';
+}
+
+function setNote(id,txt){var n=document.getElementById(id);n.innerHTML=txt||'';n.className='note'+(txt?' show':'');}
+function render(){
+  document.querySelectorAll('[data-group]').forEach(function(g){
+    var k=g.getAttribute('data-group');
+    g.querySelectorAll('.chip').forEach(function(b){
+      var v=b.getAttribute('data-v'),on=(S[k] instanceof Set)?S[k].has(v):S[k]===v;
+      b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);
+    });
+  });
+  var only16or18=has('h16')||has('h18');
+  document.getElementById('subExt').className='sub'+(has('oth')?' show':'');
+  document.getElementById('subAgc').className='sub'+(S.cyto==='agc'?' show':'');
+  document.getElementById('subDs').className='sub'+(S.cyto==='none'&&has('oth')&&!only16or18&&S.ext!=='low'?' show':'');
+  var na='';
+  if(S.age==='lt25') na='< 25 歲：處置沿用 2012 演算法，不依 HPV genotype 分流；不可 Expedited treatment。';
+  else if(S.age==='25_29') na='25–29 歲：異常結果處置與 30–65 歲共用 2019 Risk-based management。';
+  else if(S.age==='gt65') na='> 65 歲：異常結果依 25–65 歲規則處置（Perkins K.5）。';
+  if(S.special.has('immuno')&&S.age) na+=(na?'<br>':'')+'已選免疫功能低下：改用 K.3 規則，不分年齡。';
+  setNote('noteAge',na);
+  setNote('noteHpv',has('oth')&&only16or18?'已同時選 HPV 16/18：以 16 → 18 → Other 的優先順序判斷，Extended genotyping 不影響結果。':'');
+  setNote('noteHist',S.special.has('preg')&&S.special.has('immuno')?'懷孕合併免疫功能低下：先依 K.3 決定是否 Colposcopy，再套用孕期限制（K.2）。':'');
+  renderResult();
+}
+
+function handle(k,v){
+  if(k==='age'||k==='cyto'){S[k]=S[k]===v?null:v;}
+  else if(k==='hpv'){
+    if(v==='neg'||v==='nd'){if(has(v))S.hpv.delete(v);else S.hpv=new Set([v]);}
+    else{S.hpv.delete('neg');S.hpv.delete('nd');if(has(v))S.hpv.delete(v);else S.hpv.add(v);}
+  }else if(k==='special'){if(S.special.has(v))S.special.delete(v);else S.special.add(v);}
+  else{S[k]=v;}
+}
+document.querySelectorAll('[data-group]').forEach(function(g){
+  g.addEventListener('click',function(e){
+    var b=e.target.closest('.chip');if(!b||b.disabled)return;
+    handle(g.getAttribute('data-group'),b.getAttribute('data-v'));render();
+  });
+});
+function doReset(){resetState();render();window.scrollTo({top:0,behavior:'smooth'});}
+document.getElementById('resetTop').addEventListener('click',doReset);
+document.getElementById('resetDock').addEventListener('click',doReset);
+document.getElementById('dockPill').addEventListener('click',function(){document.getElementById('result').scrollIntoView({behavior:'smooth'});});
+render();
+})();
+</script>
+</body>
+</html>
